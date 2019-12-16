@@ -7,11 +7,7 @@ def findAvailableIndices(digit, count, template):
         offsets = list(range(start, length, digit + 1))[:count]
         if len(offsets) != count:
             return
-        for offset in offsets:
-            if template[offset] is not None:
-                break
-        else:
-            # The for loop didn't break, so all offsets are None.
+        if all(template[i] is None for i in offsets):
             yield offsets
 
 
@@ -48,10 +44,10 @@ def solve(availableDigitCounts):
 
     print('solutions for', availableDigitCounts)
     for solution in solutions:
-        print(''.join(map(str, solution)))
+        print(solution)
 
 
-solve([2, 2, 2, 2])
+solve([2] * 4)
 solve([3] * 9)
 
 
