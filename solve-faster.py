@@ -20,7 +20,7 @@ def _solve(availableDigitCounts, template, solutions):
                 firstFreeIndex = i
                 digit = firstFreeIndex + 1
                 break
-        assert digit > 0
+        assert 10 > digit > 0
 
         for availableIndices in findAvailableIndices(
                 digit, availableDigitCounts[firstFreeIndex], template):
@@ -38,6 +38,7 @@ def _solve(availableDigitCounts, template, solutions):
 
 
 def solve(availableDigitCounts):
+    assert len(availableDigitCounts) < 10
     template = [None] * sum(availableDigitCounts)
     solutions = []
     _solve(availableDigitCounts, template, solutions)
